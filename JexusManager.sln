@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+# SharpDevelop 5.0
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1CD001BD-53C3-4A20-9CE4-6C69BDCFD393}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteServicesHost", "RemoteServices\RemoteServicesHost.csproj", "{166D0250-A41F-4DDD-B000-DC5BF0A3C302}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemObjects.Mono.Helpers", "RemObjects.Mono.Helpers\RemObjects.Mono.Helpers.csproj", "{5E9B9AB3-59E8-44FA-B3DC-5EE67800C462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jws", "jws\jws.csproj", "{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Options", "Mono.Options\Mono.Options.csproj", "{C26430B5-E2AE-410E-924C-567D79E625DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{166D0250-A41F-4DDD-B000-DC5BF0A3C302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166D0250-A41F-4DDD-B000-DC5BF0A3C302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166D0250-A41F-4DDD-B000-DC5BF0A3C302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166D0250-A41F-4DDD-B000-DC5BF0A3C302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E9B9AB3-59E8-44FA-B3DC-5EE67800C462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E9B9AB3-59E8-44FA-B3DC-5EE67800C462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E9B9AB3-59E8-44FA-B3DC-5EE67800C462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E9B9AB3-59E8-44FA-B3DC-5EE67800C462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C26430B5-E2AE-410E-924C-567D79E625DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C26430B5-E2AE-410E-924C-567D79E625DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C26430B5-E2AE-410E-924C-567D79E625DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C26430B5-E2AE-410E-924C-567D79E625DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
