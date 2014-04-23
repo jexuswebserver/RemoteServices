@@ -66,7 +66,6 @@ namespace RemoteServices
                 if (variables.ContainsKey(name))
                 {
                     var result = variables[name];
-                    variables.Remove(name);
                     return result;
                 }
             }
