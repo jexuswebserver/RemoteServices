@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace RemoteServices
+namespace RemoteServicesHost
 {
     public static class JexusServer
     {

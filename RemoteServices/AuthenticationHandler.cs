@@ -21,7 +21,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RemoteServices
+namespace RemoteServicesHost
 {
     public class AuthenticationHandler : DelegatingHandler
     {

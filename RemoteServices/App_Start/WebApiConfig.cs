@@ -16,7 +16,7 @@
 
 using System.Web.Http;
 
-namespace RemoteServices
+namespace RemoteServicesHost
 {
     public static class WebApiConfig
     {

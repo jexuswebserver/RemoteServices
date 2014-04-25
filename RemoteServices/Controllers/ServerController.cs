@@ -23,9 +23,10 @@ using System.Web.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
 
-namespace RemoteServices.Controllers
+namespace RemoteServicesHost.Controllers
 {
     [RoutePrefix("api/server")]
+    [RequireHttps]
     public class ServerController : ApiController
     {
 		[Route("")]

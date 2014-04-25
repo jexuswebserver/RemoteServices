@@ -17,7 +17,6 @@
 using Microsoft.Owin.Hosting;
 using Mono.Unix.Native;
 using RemObjects.Mono.Helpers;
-using RemoteServices;
 using System;
 using System.IO;
 using System.Reflection;

@@ -22,9 +22,10 @@ using System.IO;
 using System.Linq;
 using System.Web.Http;
 
-namespace RemoteServices.Controllers
+namespace RemoteServicesHost.Controller
 {
     [RoutePrefix("api/site")]
+    [RequireHttps]
     public class SiteController : ApiController
     {
         [Route("")]

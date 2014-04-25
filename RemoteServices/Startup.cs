@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using Owin;
-using RemoteServices;
 using System.Web.Http;
 
 namespace RemoteServicesHost

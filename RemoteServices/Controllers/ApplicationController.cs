@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using RemoteServices;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +24,7 @@ using System.Web.Http;
 namespace RemoteServicesHost.Controllers
 {
     [RoutePrefix("api/app")]
+    [RequireHttps]
     public class ApplicationController : ApiController
     {
         [Route("{name}")]
@@ -49,6 +49,7 @@ namespace RemoteServicesHost.Controllers
         }
 
         [Route("get/{name}")]
+		[HttpGet]
         public IDictionary<string, List<string>> GetApplication(string name)
         {
             var rows = File.ReadAllLines(Path.Combine(JexusServer.SiteFolder, name));
@@ -80,7 +81,7 @@ namespace RemoteServicesHost.Controllers
                 return null;
             }
 
-            if (!result["root"][0].StartsWith(string.Format("{0}/ ", appName)))
+            if (!result["root"][0].StartsWith(string.Format("{0} ", appName)))
             {
                 return null;
             }
