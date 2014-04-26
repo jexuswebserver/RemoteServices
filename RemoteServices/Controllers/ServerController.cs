@@ -102,5 +102,17 @@ namespace RemoteServicesHost.Controllers
 
             return new X509Certificate2(path);
         }
+		
+		[Route("test")]
+        [HttpPost]
+        public string GetString([FromBody] string path)
+        {
+            if (!File.Exists(path))
+            {
+                return string.Empty;
+            }
+
+			return File.ReadAllText(path);
+        }
     }
 }
