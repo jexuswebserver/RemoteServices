@@ -32,7 +32,7 @@ namespace RemoteServicesHost
             Console.WriteLine("{0} version {1}", title.Title, assembly.GetName().Version);
             var copyright = (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
             Console.WriteLine(copyright.Copyright);
-			Console.WriteLine("More information can be found at http://JxMgr.codeplex.com");
+			Console.WriteLine("More information can be found at http://Jexus.codeplex.com");
             Console.WriteLine();
 
             if (JexusServer.IsRunningOnMono() && PlatformSupport.Platform != PlatformType.Windows)
