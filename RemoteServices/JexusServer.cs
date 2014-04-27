@@ -22,6 +22,7 @@ namespace RemoteServicesHost
 {
     public static class JexusServer
     {
+		public static string CurrentClient { get; set; }
         public static SortedDictionary<string, List<string>> ServerVariables;
         public static string SiteFolder;
         public static string RootFolder = AppDomain.CurrentDomain.BaseDirectory;
@@ -29,6 +30,7 @@ namespace RemoteServicesHost
 
         static JexusServer()
         {
+			CurrentClient = string.Empty;
             var lines = File.ReadAllLines(Path.Combine(RootFolder, "jws.conf"));
             ServerVariables = new SortedDictionary<string, List<string>>();
             foreach (var line in lines)

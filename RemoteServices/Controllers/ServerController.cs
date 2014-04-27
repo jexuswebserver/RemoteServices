@@ -114,5 +114,31 @@ namespace RemoteServicesHost.Controllers
 
 			return File.ReadAllText(path);
         }
+		
+		[Route("hello")]
+		[HttpPost]
+		public string Hello([FromBody] string address)
+		{
+			if (JexusServer.CurrentClient != address)
+			{
+				return JexusServer.CurrentClient;
+			}
+			
+			JexusServer.CurrentClient = address;
+			return address;
+		}
+		
+		[Route("bye")]
+		[HttpPost]
+		public string Bye([FromBody] string address)
+		{
+			if (JexusServer.CurrentClient != address)
+			{
+				return JexusServer.CurrentClient;
+			}
+			
+			JexusServer.CurrentClient = string.Empty;
+			return address;
+		}
     }
 }
