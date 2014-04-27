@@ -87,9 +87,9 @@ namespace RemoteServicesHost.Controllers
 		
 		[Route("version")]
 		[HttpGet]
-		public Version GetVersion()
+		public string GetVersion()
 		{
-			return Assembly.GetExecutingAssembly().GetName().Version;
+			return Assembly.GetExecutingAssembly().GetName().Version.ToString();
 		}
 
         [Route("cert")]
