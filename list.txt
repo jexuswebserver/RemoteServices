@@ -1,0 +1,8 @@
+Microsoft.*
+Mono.*
+Newtonsoft.Json.dll
+Owin.dll
+RemObjects.*
+RemoteServicesHost.*
+System.*
+server.*
