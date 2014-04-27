@@ -86,6 +86,7 @@ namespace RemoteServicesHost.Controllers
         }
 		
 		[Route("version")]
+		[HttpGet]
 		public Version GetVersion()
 		{
 			return Assembly.GetExecutingAssembly().GetName().Version;
