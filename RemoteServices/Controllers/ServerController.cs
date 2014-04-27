@@ -120,7 +120,7 @@ namespace RemoteServicesHost.Controllers
 		[HttpPost]
 		public string Hello([FromBody] string address)
 		{
-			if (JexusServer.CurrentClient != address)
+			if (!string.IsNullOrEmpty(JexusServer.CurrentClient) && JexusServer.CurrentClient != address)
 			{
 				return JexusServer.CurrentClient;
 			}
