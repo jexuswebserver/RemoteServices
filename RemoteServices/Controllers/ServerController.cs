@@ -29,7 +29,7 @@ namespace RemoteServicesHost.Controllers
     [RequireHttps]
     public class ServerController : ApiController
     {
-		[Route("")]
+        [Route("")]
         [HttpGet]
         public IDictionary<string, List<string>> Get()
         {
@@ -84,13 +84,13 @@ namespace RemoteServicesHost.Controllers
             var content = process.StandardOutput.ReadToEnd();
             return content.Contains("running");
         }
-		
-		[Route("version")]
-		[HttpGet]
-		public string GetVersion()
-		{
-			return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-		}
+        
+        [Route("version")]
+        [HttpGet]
+        public string GetVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        }
 
         [Route("cert")]
         [HttpPost]
@@ -103,8 +103,26 @@ namespace RemoteServicesHost.Controllers
 
             return new X509Certificate2(path);
         }
-		
-		[Route("test")]
+        
+        [Route("cert/save")]
+        [HttpPost]
+        public string SaveCertificate([FromBody] string text)
+        {
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "jexus.crt");
+            File.WriteAllText(path, text);
+            return path;
+        }
+        
+        [Route("key/save")]
+        [HttpPost]
+        public string SaveKey([FromBody] string text)
+        {
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "jexus.key");
+            File.WriteAllText(path, text);
+            return path;
+        }
+        
+        [Route("test")]
         [HttpPost]
         public string GetString([FromBody] string path)
         {
@@ -113,33 +131,33 @@ namespace RemoteServicesHost.Controllers
                 return string.Empty;
             }
 
-			return File.ReadAllText(path);
+            return File.ReadAllText(path);
         }
-		
-		[Route("hello")]
-		[HttpPost]
-		public string Hello([FromBody] string address)
-		{
-			if (!string.IsNullOrEmpty(JexusServer.CurrentClient) && JexusServer.CurrentClient != address)
-			{
-				return JexusServer.CurrentClient;
-			}
-			
-			JexusServer.CurrentClient = address;
-			return address;
-		}
-		
-		[Route("bye")]
-		[HttpPost]
-		public string Bye([FromBody] string address)
-		{
-			if (JexusServer.CurrentClient != address)
-			{
-				return JexusServer.CurrentClient;
-			}
-			
-			JexusServer.CurrentClient = string.Empty;
-			return address;
-		}
+        
+        [Route("hello")]
+        [HttpPost]
+        public string Hello([FromBody] string address)
+        {
+            if (!string.IsNullOrEmpty(JexusServer.CurrentClient) && JexusServer.CurrentClient != address)
+            {
+                return JexusServer.CurrentClient;
+            }
+            
+            JexusServer.CurrentClient = address;
+            return address;
+        }
+        
+        [Route("bye")]
+        [HttpPost]
+        public string Bye([FromBody] string address)
+        {
+            if (JexusServer.CurrentClient != address)
+            {
+                return JexusServer.CurrentClient;
+            }
+            
+            JexusServer.CurrentClient = string.Empty;
+            return address;
+        }
     }
 }
