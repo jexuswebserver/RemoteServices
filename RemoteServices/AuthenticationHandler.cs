@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,6 +27,7 @@ namespace RemoteServicesHost
     public class AuthenticationHandler : DelegatingHandler
     {
         const string _header = "X-HTTP-Authorization";
+        const string _time = "Time";
 
         protected override Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request, CancellationToken cancellationToken)
@@ -36,6 +38,17 @@ namespace RemoteServicesHost
                 if (!string.IsNullOrWhiteSpace(credentials) && credentials == JexusServer.Credentials)
                 {
                     return base.SendAsync(request, cancellationToken);
+                }
+
+                var time = request.Headers.GetValues(_time).FirstOrDefault();
+                if (!string.IsNullOrWhiteSpace(time))
+                {
+                    var data = DateTime.Parse(time, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+                    var span = DateTime.UtcNow - data;
+                    if (span.TotalSeconds > 0 && span.TotalSeconds <= JexusServer.Timeout)
+                    {
+                        return base.SendAsync(request, cancellationToken);
+                    }
                 }
             }
 

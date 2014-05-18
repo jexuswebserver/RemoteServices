@@ -52,6 +52,7 @@ namespace RemoteServicesHost
 
             var baseAddress = args.Length > 0 ? args[0] : "https://localhost:8088";
             JexusServer.Credentials = args.Length > 2 ? args[1] + "|" + args[2] : "jexus|lextudio.com";
+            JexusServer.Timeout = args.Length > 3 ? double.Parse(args[3]) : 30D;
 
             using (WebApp.Start<Startup>(url: baseAddress))
             {

@@ -23,6 +23,8 @@ namespace RemoteServicesHost
     public static class JexusServer
     {
 		public static string CurrentClient { get; set; }
+        public static double Timeout { get; set; }
+
         public static SortedDictionary<string, List<string>> ServerVariables;
         public static string SiteFolder;
         public static string RootFolder = AppDomain.CurrentDomain.BaseDirectory;
