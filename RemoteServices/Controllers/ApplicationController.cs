@@ -52,6 +52,18 @@ namespace RemoteServicesHost.Controllers
 		[HttpGet]
         public IDictionary<string, List<string>> GetApplication(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return new Dictionary<string, List<string>>();
+            }
+            
+            if (name.Contains(".."))
+            {
+                // IMPORTANT: prevent parent paths.
+                // TODO: does this catch all cases?
+                return new Dictionary<string, List<string>>();
+            }
+            
             var rows = File.ReadAllLines(Path.Combine(JexusServer.SiteFolder, name));
             var result = new SortedDictionary<string, List<string>>();
             foreach (var line in rows)

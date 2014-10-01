@@ -96,6 +96,24 @@ namespace RemoteServicesHost.Controllers
         [HttpPost]
         public X509Certificate2 GetCertificate([FromBody] string path)
         {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return null;
+            }
+            
+            if (path.Contains(".."))
+            {
+                // IMPORTANT: prevent parent paths.
+                return null;
+            }
+            
+            var current = Directory.GetCurrentDirectory();
+            if (!path.StartsWith(current, StringComparison.OrdinalIgnoreCase))
+            {
+                // IMPORTANT: prevent any path.
+                return null;
+            }
+            
             if (!File.Exists(path))
             {
                 return null;
@@ -108,6 +126,11 @@ namespace RemoteServicesHost.Controllers
         [HttpPost]
         public string SaveCertificate([FromBody] string text)
         {
+            if (!Request.IsLocal())
+            {
+                return string.Empty;
+            }
+            
             var path = Path.Combine(Directory.GetCurrentDirectory(), "jexus.crt");
             File.WriteAllText(path, text);
             return path;
@@ -117,7 +140,12 @@ namespace RemoteServicesHost.Controllers
         [HttpPost]
         public string SaveKey([FromBody] string text)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "jexus.key");
+            if (!Request.IsLocal())
+            {
+                return string.Empty;
+            }
+            
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "jexus.key");            
             File.WriteAllText(path, text);
             return path;
         }
@@ -126,6 +154,25 @@ namespace RemoteServicesHost.Controllers
         [HttpPost]
         public string GetString([FromBody] string path)
         {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return string.Empty;
+            }
+            
+            if (path.Contains(".."))
+            {
+                // IMPORTANT: prevent parent paths.
+                // TODO: does this catch all cases?
+                return string.Empty;
+            }
+            
+            var current = Directory.GetCurrentDirectory();
+            if (!path.StartsWith(current, StringComparison.OrdinalIgnoreCase))
+            {
+                // IMPORTANT: prevent any path.
+                return string.Empty;
+            }
+            
             if (!File.Exists(path))
             {
                 return string.Empty;
@@ -137,10 +184,10 @@ namespace RemoteServicesHost.Controllers
         [Route("hello")]
         [HttpPost]
         public string Hello([FromBody] string address)
-        {
+        {            
             if (!string.IsNullOrEmpty(JexusServer.CurrentClient) && JexusServer.CurrentClient != address)
             {
-                return JexusServer.CurrentClient;
+                return Request.IsLocal() ? JexusServer.CurrentClient : "another host";
             }
             
             JexusServer.CurrentClient = address;
@@ -153,7 +200,7 @@ namespace RemoteServicesHost.Controllers
         {
             if (JexusServer.CurrentClient != address)
             {
-                return JexusServer.CurrentClient;
+                return Request.IsLocal() ? JexusServer.CurrentClient : "another host";
             }
             
             JexusServer.CurrentClient = string.Empty;

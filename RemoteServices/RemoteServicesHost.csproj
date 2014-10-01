@@ -83,6 +83,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="HttpRequestMessageExtensions.cs" />
     <Compile Include="RequireHttpsAttribute.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ServerController.cs" />

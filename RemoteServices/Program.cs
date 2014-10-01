@@ -104,7 +104,8 @@ namespace RemoteServicesHost
                         PathLenConstraint = BasicConstraintsExtension.NoPathLengthConstraint,
                         CertificateAuthority = true
                     };
-                    ExtendedKeyUsageExtension eku = null;
+                    ExtendedKeyUsageExtension eku = new ExtendedKeyUsageExtension();
+                    eku.KeyPurpose.Add("1.3.6.1.5.5.7.3.1");                    
                     SubjectAltNameExtension alt = null;
                     string p12file = Path.Combine(path, "temp.pfx");
                     string p12pwd = "test";

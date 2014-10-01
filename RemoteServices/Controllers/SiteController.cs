@@ -52,6 +52,18 @@ namespace RemoteServicesHost.Controller
         [HttpGet]
         public IDictionary<string, List<string>> Get(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return new Dictionary<string, List<string>>();
+            }
+            
+            if (name.Contains(".."))
+            {
+                // IMPORTANT: prevent parent paths.
+                // TODO: does this catch all cases?
+                return new Dictionary<string, List<string>>();
+            }
+            
             var rows = File.ReadAllLines(Path.Combine(JexusServer.SiteFolder, name));
             var result = new SortedDictionary<string, List<string>>();
             foreach (var line in rows)
@@ -87,6 +99,18 @@ namespace RemoteServicesHost.Controller
         [HttpPut]
         public void Put(string name, SortedDictionary<string, List<string>> variables)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return;
+            }
+            
+            if (name.Contains(".."))
+            {
+                // IMPORTANT: prevent parent paths.
+                // TODO: does this catch all cases?
+                return;
+            }
+            
             var rows = new List<string>();
             foreach (var item in variables)
             {
@@ -103,7 +127,19 @@ namespace RemoteServicesHost.Controller
         [Route("{name}")]
         [HttpDelete]
         public void Delete(string name)
-        {
+        {            
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return;
+            }
+            
+            if (name.Contains(".."))
+            {
+                // IMPORTANT: prevent parent paths.
+                // TODO: does this catch all cases?
+                return;
+            }
+            
             var fileName = Path.Combine(JexusServer.SiteFolder, name);
             File.Delete(fileName);
         }
@@ -153,6 +189,18 @@ namespace RemoteServicesHost.Controller
         [HttpGet]
         public IEnumerable<string> GetFiles(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return new List<string>();
+            }
+            
+            if (name.Contains(".."))
+            {
+                // IMPORTANT: prevent parent paths.
+                // TODO: does this catch all cases?
+                return new List<string>();
+            }
+            
             var variables = Get(name);
             var root = variables["root"][0];
             var split = root.IndexOf(' ');
@@ -172,6 +220,7 @@ namespace RemoteServicesHost.Controller
         [HttpPost]
         public bool VerifyPath([FromBody] string path)
         {
+            // TODO: should this be protected?
             return Directory.Exists(path);
         }
     }
