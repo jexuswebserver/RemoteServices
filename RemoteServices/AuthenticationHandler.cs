@@ -32,22 +32,31 @@ namespace RemoteServicesHost
         protected override Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            string error = null;
             if (request.Headers.Contains(_header))
             {
                 var credentials = request.Headers.GetValues(_header).FirstOrDefault();
-                if (!string.IsNullOrWhiteSpace(credentials) && credentials == JexusServer.Credentials)
+                if (string.IsNullOrWhiteSpace(credentials) || credentials != JexusServer.Credentials)
                 {
-                    return base.SendAsync(request, cancellationToken);
+                    error = "invalid credentials";
                 }
-
-                var time = request.Headers.GetValues(_time).FirstOrDefault();
-                if (!string.IsNullOrWhiteSpace(time))
+                else
                 {
-                    var data = DateTime.Parse(time, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
-                    var span = DateTime.UtcNow - data;
-                    if (span.TotalSeconds > 0 && span.TotalSeconds <= JexusServer.Timeout)
+                    var time = request.Headers.GetValues(_time).FirstOrDefault();
+                    if (!string.IsNullOrWhiteSpace(time))
                     {
-                        return base.SendAsync(request, cancellationToken);
+                        var data = DateTime.Parse(time, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+                        var span = DateTime.Now - data;
+                        if (span.TotalSeconds > 0 && span.TotalSeconds <= JexusServer.Timeout)
+                        {
+                            return base.SendAsync(request, cancellationToken);
+                        }
+
+                        error = "timeout occurred";
+                    }
+                    else
+                    {
+                        error = "time info is missing";
                     }
                 }
             }
@@ -55,7 +64,7 @@ namespace RemoteServicesHost
             // Create the response.
             var response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
             {
-                Content = new StringContent("You are not authorized for this server.")
+                Content = new StringContent(string.Format("You are not authorized for this server: {0}", error))
             };
 
             // Note: TaskCompletionSource creates a task that does not contain a delegate.

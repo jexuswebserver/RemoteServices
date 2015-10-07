@@ -1,6 +1,6 @@
 denydirs=bin,App_code
-allowfrom=111.222.111.*
-allowfrom=1.1.1.1
+allowfrom=111.222.112.*
+allowfrom=1.1.2.1
 rewrite=^/.+?\.(asp|php|cgi)$ /404.html
 denyfrom=111.222.111.*
 denyfrom=1.1.1.1
