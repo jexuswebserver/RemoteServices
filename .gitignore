@@ -23,6 +23,7 @@ logs
 *.generated.cs
 T4MVC.cs
 /packages
+/.vs
 /gendarme
 *.zip
 /NDependOut

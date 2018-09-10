@@ -1,4 +1,3 @@
-
 $msBuild = "msbuild"
 & $msBuild /version
 if ($LastExitCode -ne 0)
@@ -23,7 +22,7 @@ else
 }
 
 Write-Host "MSBuild found. Compile the projects."
-& $msBuild /p:Configuration=Release
+& $msBuild /p:Configuration=Release /t:Rebuild
 if ($LastExitCode -ne 0)
 {
     Write-Error "MSBuild failed."

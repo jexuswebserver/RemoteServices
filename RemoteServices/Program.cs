@@ -41,7 +41,7 @@ namespace RemoteServicesHost
             Console.WriteLine("{0} version {1}", title.Title, assembly.GetName().Version);
             var copyright = (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyCopyrightAttribute));
             Console.WriteLine(copyright.Copyright);
-            Console.WriteLine("More information can be found at https://Jexus.codeplex.com");
+            Console.WriteLine("More information can be found at https://www.jexusmanager.com");
             Console.WriteLine();
 
             var baseAddress = args.Length > 0 ? args[0] : "https://localhost:8088";

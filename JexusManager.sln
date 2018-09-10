@@ -14,8 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemObjects.Mono.Helpers", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jws", "jws\jws.csproj", "{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Options", "Mono.Options\Mono.Options.csproj", "{C26430B5-E2AE-410E-924C-567D79E625DC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +32,6 @@ Global
 		{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4201E32-8E44-4B14-B440-E0DADD3EBBA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C26430B5-E2AE-410E-924C-567D79E625DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C26430B5-E2AE-410E-924C-567D79E625DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C26430B5-E2AE-410E-924C-567D79E625DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C26430B5-E2AE-410E-924C-567D79E625DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
