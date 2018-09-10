@@ -5,5 +5,5 @@ Owin.dll
 RemObjects.*
 RemoteServicesHost.*
 System.*
-BouncyCastle.*
+crypto.*
 server.*
