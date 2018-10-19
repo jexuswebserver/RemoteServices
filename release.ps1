@@ -1,8 +1,12 @@
 $msBuild = "msbuild"
-& $msBuild /version
-if ($LastExitCode -ne 0)
+try
 {
-    Write-Host "MSBuild doesn't exist. Use VSSetup instead."
+    & $msBuild /version
+    Write-Host "Likely on Linux/macOS."
+}
+catch
+{
+    Write-Host "Likely on Windows."
 
     Install-Module VSSetup -Scope CurrentUser -Force
     $instance = Get-VSSetupInstance -All | Select-VSSetupInstance -Require 'Microsoft.Component.MSBuild' -Latest
@@ -13,12 +17,6 @@ if ($LastExitCode -ne 0)
         Write-Host "MSBuild doesn't exist. Exit."
         exit 1
     }
-
-    Write-Host "Likely on Windows."
-}
-else
-{
-    Write-Host "Likely on Linux/macOS."
 }
 
 Write-Host "MSBuild found. Compile the projects."
