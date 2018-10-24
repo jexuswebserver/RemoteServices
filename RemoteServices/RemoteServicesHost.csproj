@@ -42,6 +42,15 @@
     <PackageReference Include="Microsoft.AspNet.WebApi">
       <Version>5.2.6</Version>
     </PackageReference>
+    <PackageReference Include="Mono.Options" Condition=" '$(OS)' == 'Windows_NT' ">
+      <Version>5.3.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Mono.Posix" Condition=" '$(OS)' == 'Windows_NT' ">
+      <Version>5.4.0.201</Version>
+    </PackageReference>
+    <PackageReference Include="Mono.Security" Condition=" '$(OS)' == 'Windows_NT' ">
+      <Version>5.4.0.201</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,9 +62,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Web" />
-    <Reference Include="Mono.Security" />
-    <Reference Include="Mono.Options" />
-    <Reference Include="Mono.Posix" />
+    <Reference Include="Mono.Security" Condition=" '$(OS)' != 'Windows_NT' " />
+    <Reference Include="Mono.Options" Condition=" '$(OS)' != 'Windows_NT' " />
+    <Reference Include="Mono.Posix" Condition=" '$(OS)' != 'Windows_NT' " />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\lib\SharedAssemblyInfo.cs">
